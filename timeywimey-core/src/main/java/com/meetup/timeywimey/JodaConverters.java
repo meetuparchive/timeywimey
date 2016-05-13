@@ -81,7 +81,7 @@ public class JodaConverters {
 	 * ****************************** */
 
 	public static java.time.ZonedDateTime jodaToJavaDateTime( org.joda.time.DateTime dateTime ) {
-		return jodaToJavaInstant( dateTime.toInstant() ).atZone( jodaToJavaTimeZone(dateTime.getZone() ) );
+		return jodaToJavaInstant( dateTime.toInstant() ).atZone( jodaToJavaTimeZone( dateTime.getZone() ) );
 	}
 
 	public static org.joda.time.DateTime javaToJodaDateTime( java.time.ZonedDateTime dateTime ) {
