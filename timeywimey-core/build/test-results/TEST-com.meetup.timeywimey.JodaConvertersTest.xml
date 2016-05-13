@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.meetup.timeywimey.JodaConvertersTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-05-13T19:05:32" hostname="dhcpb52.dev.hq.meetup.com" time="0.026">
-  <properties/>
-  <testcase name="localDateTest" classname="com.meetup.timeywimey.JodaConvertersTest" time="0.026"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
