@@ -11,8 +11,7 @@ description := "Converters between JodaTime and Java 8 time classes, plus some l
 publishMavenStyle := true
 
 libraryDependencies ++= Seq(
-  "joda-time" % "joda-time" % "2.9.3",
-  "com.meetup" % "timeywimey-core" % "0.1.0"
+  "joda-time" % "joda-time" % "2.9.3"
 )
 
 lazy val `timeywimey-scala` = project
