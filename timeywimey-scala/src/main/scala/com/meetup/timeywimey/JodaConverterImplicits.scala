@@ -2,6 +2,9 @@ package com.meetup.timeywimey
 
 import com.meetup.timeywimey.JodaConverters._
 
+/** Implicits directly wrapping converter logic in java for syntactic sugar
+  * Very little moving parts here, update `timeywimey-core` for changing logic.
+  */
 object JodaConverterImplicits {
   implicit class JodaToJavaLocalDate(localDate: org.joda.time.LocalDate) {
     def asJava: java.time.LocalDate = jodaToJavaLocalDate(localDate)
