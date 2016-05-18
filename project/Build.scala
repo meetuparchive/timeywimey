@@ -6,5 +6,5 @@ object TimeywimeyBuild extends Build {
 
   lazy val core = Project(id = "timeywimey-core", base = file("timeywimey-core"))
 
-  lazy val scala = Project(id = "timeywimey-scala", base = file("timeywimey-scala")) dependsOn(core)
+  lazy val scala = Project(id = "timeywimey-scala", base = file("timeywimey-scala")) dependsOn core
 }
