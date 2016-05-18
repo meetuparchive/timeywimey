@@ -82,6 +82,32 @@ public class LegacyConverters {
 	}
 
 	/**
+	 * Converts legacy java.util.Date (or java.sql.Timestamp) class to YearMonth
+	 * @param date a java.util.Date object
+	 * @return a YearMonth object
+	 */
+	public static YearMonth toYearMonth( Date date ) {
+		Calendar c = Calendar.getInstance();
+		c.setTime( date );
+		int year = c.get( Calendar.YEAR );
+		int month = c.get( Calendar.MONTH );
+		return YearMonth.of( year, month );
+	}
+
+	/**
+	 * Converts legacy java.util.Date (or java.sql.Timestamp) class to MonthDay
+	 * @param date a java.util.Date object
+	 * @return a MonthDay object
+	 */
+	public static MonthDay toMonthDay( Date date ) {
+		Calendar c = Calendar.getInstance();
+		c.setTime( date );
+		int month = c.get( Calendar.MONTH );
+		int day = c.get( Calendar.DAY_OF_MONTH );
+		return MonthDay.of( month, day );
+	}
+
+	/**
 	 * Converts ZonedDateTime into Date
 	 * @param dateTime a ZonedDateTime object
 	 * @return a Date object with equivalent epoch millis

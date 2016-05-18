@@ -77,6 +77,32 @@ public class LegacyConvertersTest {
 	}
 
 	@Test
+	public void dateToYearMonthTest() {
+		long epochMillis = 31415926535L;
+		Date date = new Date( epochMillis );
+		Calendar c = Calendar.getInstance();
+		c.setTime( date );
+		int year = c.get( Calendar.YEAR );
+		int month = c.get( Calendar.MONTH );
+		YearMonth yearMonth = toYearMonth( date );
+		assertEquals( yearMonth.getYear(), year );
+		assertEquals( yearMonth.getMonthValue(), month );
+	}
+
+	@Test
+	public void dateToMonthDayTest() {
+		long epochMillis = 31415926535L;
+		Date date = new Date( epochMillis );
+		Calendar c = Calendar.getInstance();
+		c.setTime( date );
+		int month = c.get( Calendar.MONTH );
+		int day = c.get( Calendar.DAY_OF_MONTH );
+		MonthDay monthDay = toMonthDay( date );
+		assertEquals( monthDay.getMonthValue(), month );
+		assertEquals( monthDay.getDayOfMonth(), day );
+	}
+
+	@Test
 	public void instantToDateTest() {
 		long epochMillis = 31415926535L;
 		Instant instant = Instant.ofEpochMilli( epochMillis );

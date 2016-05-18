@@ -18,6 +18,10 @@ object LegacyConverterImplicits {
     def toLocalDate: LocalDate = LegacyConverters.toLocalDate(date)
 
     def toLocalTime: LocalTime = LegacyConverters.toLocalTime(date)
+
+    def toYearMonth: YearMonth = LegacyConverters.toYearMonth(date)
+
+    def toMonthDay: MonthDay = LegacyConverters.toMonthDay(date)
   }
 
   implicit class ZonedDateTimeToDateLike(dateTime: ZonedDateTime) {
