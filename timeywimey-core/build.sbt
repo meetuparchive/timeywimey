@@ -1,6 +1,11 @@
 enablePlugins(CommonSettingsPlugin)
 enablePlugins(NexusPlugin)
 
+javacOptions in (`timeywimey-core`, doc) := Seq(
+  "-source", "1.8",
+  "-encoding", "UTF-8"
+)
+
 name := "timeywimey-core"
 
 description := "Converters between JodaTime and Java 8 time classes, plus some legacy java.util time classes utility."
