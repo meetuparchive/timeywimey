@@ -1,5 +1,7 @@
 lazy val `timeywimey-core` = project
 
+enablePlugins(CommonSettingsPlugin)
+enablePlugins(NexusPlugin)
+
 autoScalaLibrary := false
 
-scalaVersion := "2.11.7"
