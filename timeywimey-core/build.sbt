@@ -1,14 +1,14 @@
+enablePlugins(CommonSettingsPlugin)
 enablePlugins(NexusPlugin)
+
+javacOptions in (`timeywimey-core`, doc) := Seq(
+  "-source", "1.8",
+  "-encoding", "UTF-8"
+)
 
 name := "timeywimey-core"
 
-organization := "com.meetup"
-
-version := "0.1.1"
-
 description := "Converters between JodaTime and Java 8 time classes, plus some legacy java.util time classes utility."
-
-publishMavenStyle := true
 
 crossPaths := false
 
