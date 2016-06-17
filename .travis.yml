@@ -51,4 +51,4 @@ after_success:
     || true
   - >
     [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ] &&
-    git push origin $GIT_TAG || true
+    git push -q https://$GITHUB_USER:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG --tags || true
