@@ -1,0 +1,56 @@
+sudo: required
+language: bash
+
+# Only build pushes to master.
+branches:
+  only:
+    - master
+
+services:
+  - docker
+
+cache:
+  directories:
+  - "$HOME/.ivy2"
+  - "$HOME/.sbt"
+
+env:
+  global:
+    - DOCKER_VERSION=1.10.1-0~trusty
+    - CI_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+before_install:
+  # upgrade docker-engine to specific version
+  - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_VERSION}
+
+  # Install envtpl for easy templating.
+  - sudo pip install envtpl
+
+  - envtpl < .credentials > "$HOME/.ivy2/.credentials"
+
+  - export PR=https://api.github.com/repos/$TRAVIS_REPO_SLUG/pulls/$TRAVIS_PULL_REQUEST
+  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo `curl --user "$GITHUB_USER:$GITHUB_PASS" -s $PR | jq -r .head.ref`; fi)
+  - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
+
+  - export CI_BUILD_NUMBER=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $CI_BUILD_NUMBER; else echo "${TRAVIS_BUILD_NUMBER}-SNAPSHOT"; fi)
+  - echo "CI_BUILD_NUMBER=${CI_BUILD_NUMBER}"
+
+  # Login to mup.cr
+  - docker login --email not@val.id --username travis --password $DOCKER_PASS mup.cr
+
+script:
+  - make publish
+
+after_success:
+  - git config --global user.email "builds@travis-ci.com"
+  - git config --global user.name "Travis CI"
+  - export GIT_TAG=$(make version)
+  - echo "GIT_TAG=$GIT_TAG"
+  - >
+    [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ] &&
+    git tag $GIT_TAG -f -a -m "Version $GIT_TAG built by Travis CI - https://travis-ci.com/$TRAVIS_REPO_SLUG/builds/$TRAVIS_JOB_ID"
+    || true
+  - >
+    [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ] &&
+    git push origin $GIT_TAG || true
