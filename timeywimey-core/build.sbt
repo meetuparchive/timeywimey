@@ -1,5 +1,4 @@
 enablePlugins(CommonSettingsPlugin)
-enablePlugins(NexusPlugin)
 
 javacOptions in (`timeywimey-core`, doc) := Seq(
   "-source", "1.8",

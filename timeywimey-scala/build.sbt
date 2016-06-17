@@ -1,5 +1,4 @@
 enablePlugins(CommonSettingsPlugin)
-enablePlugins(NexusPlugin)
 
 name := "timeywimey-scala"
 
