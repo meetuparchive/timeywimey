@@ -27,11 +27,9 @@ before_install:
   # Install envtpl for easy templating.
   - sudo pip install envtpl
 
-  - envtpl < .credentials > "$HOME/.ivy2/.credentials"
-
-  - export PR=https://api.github.com/repos/$TRAVIS_REPO_SLUG/pulls/$TRAVIS_PULL_REQUEST
-  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo `curl --user "$GITHUB_USER:$GITHUB_PASS" -s $PR | jq -r .head.ref`; fi)
-  - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
+  - mkdir "$HOME/.bintray"
+  - envtpl < .nexuscredential > "$HOME/.ivy2/.credentials"
+  - envtpl < .credentials > "$HOME/.bintray/.credentials"
 
   - export CI_BUILD_NUMBER=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $CI_BUILD_NUMBER; else echo "${TRAVIS_BUILD_NUMBER}-SNAPSHOT"; fi)
   - echo "CI_BUILD_NUMBER=${CI_BUILD_NUMBER}"
@@ -40,7 +38,7 @@ before_install:
   - docker login --email not@val.id --username travis --password $DOCKER_PASS mup.cr
 
 script:
-  - make publish
+  - make $(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo publish; else echo package; fi)
 
 after_success:
   - git config --global user.email "builds@travis-ci.com"

@@ -22,7 +22,7 @@ package-sbt:
 # We clean the locally cached version
 # of the jar when we're done publishing.
 publish-sbt: package-sbt
-	sbt publish cleanLocal
+	sbt publish
 
 publish:
 	docker run \
@@ -30,11 +30,25 @@ publish:
 		-v $(CI_WORKDIR):/data \
 		-v $(CI_IVY_CACHE):/root/.ivy2 \
 		-v $(CI_SBT_CACHE):/root/.sbt \
+		-v $(HOME)/.bintray:/root/.bintray \
 		-e VERSION=$(VERSION) \
 		-e COVERALLS_REPO_TOKEN=$(COVERALLS_REPO_TOKEN) \
 		-e TRAVIS_JOB_ID=$(TRAVIS_JOB_ID) \
 		$(BUILDER_TAG) \
 		publish-sbt
+
+package:
+	docker run \
+		--rm \
+		-v $(CI_WORKDIR):/data \
+		-v $(CI_IVY_CACHE):/root/.ivy2 \
+		-v $(CI_SBT_CACHE):/root/.sbt \
+		-v $(HOME)/.bintray:/root/.bintray \
+		-e VERSION=$(VERSION) \
+		-e COVERALLS_REPO_TOKEN=$(COVERALLS_REPO_TOKEN) \
+		-e TRAVIS_JOB_ID=$(TRAVIS_JOB_ID) \
+		$(BUILDER_TAG) \
+		package-sbt
 
 # Required for SBT.
 version:
