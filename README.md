@@ -1,5 +1,8 @@
 # Timeywimey
 
+[![Build Status](https://travis-ci.com/meetup/ant-stats.svg?token=JyeXcy6CsrwmUv612zPA&branch=master)](https://travis-ci.com/meetup/timeywimey)
+[![Coverage Status](https://coveralls.io/repos/github/meetup/ant-stats/badge.svg?branch=master&t=jPxTiT)](https://coveralls.io/github/meetup/timeywimey?branch=master)
+
 ## Description
 
 Timeywimey is a collection of libraries providing conversion utilities for JodaTime, Legacy `java.util.Date`, and Java 8 `java.time` classes.
