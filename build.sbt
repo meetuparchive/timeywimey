@@ -14,3 +14,5 @@ resolvers += "softprops-maven" at "http://dl.bintray.com/content/softprops/maven
 bintrayOrganization in ThisBuild := Some("meetup")
 
 licenses in ThisBuild += ("MIT", url("http://opensource.org/licenses/MIT"))
+
+publish := {}

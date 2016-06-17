@@ -38,7 +38,7 @@ before_install:
   - docker login --email not@val.id --username travis --password $DOCKER_PASS mup.cr
 
 script:
-  - make publish
+  - make $(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo publish; else echo package; fi)
 
 after_success:
   - git config --global user.email "builds@travis-ci.com"
