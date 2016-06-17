@@ -238,7 +238,6 @@ public class JodaConverters {
 	 * @param period Joda-Time Period
 	 * @return Java 8 Period
 	 */
-	// Warning: Lossy. Truncates everything under day unit
 	public static java.time.Period jodaToJavaPeriod( org.joda.time.Period period ) {
 		return java.time.Period.of( period.getYears(), period.getMonths(), period.getDays() );
 	}
