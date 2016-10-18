@@ -16,14 +16,10 @@ cache:
 
 env:
   global:
-    - DOCKER_VERSION=1.10.1-0~trusty
     - CI_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
-  # upgrade docker-engine to specific version
-  - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_VERSION}
-
   # Install envtpl for easy templating.
   - sudo pip install envtpl
 

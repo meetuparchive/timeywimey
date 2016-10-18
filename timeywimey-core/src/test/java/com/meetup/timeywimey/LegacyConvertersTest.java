@@ -28,7 +28,7 @@ public class LegacyConvertersTest {
 		Calendar c = Calendar.getInstance();
 		c.setTime( date );
 		int year = c.get( Calendar.YEAR );
-		int month = c.get( Calendar.MONTH );
+		int month = c.get( Calendar.MONTH ) + 1;
 		int day = c.get( Calendar.DAY_OF_MONTH );
 		int hour = c.get( Calendar.HOUR_OF_DAY );
 		int minute = c.get( Calendar.MINUTE );
@@ -51,7 +51,7 @@ public class LegacyConvertersTest {
 		Calendar c = Calendar.getInstance();
 		c.setTime( date );
 		int year = c.get( Calendar.YEAR );
-		int month = c.get( Calendar.MONTH );
+		int month = c.get( Calendar.MONTH ) + 1;
 		int day = c.get( Calendar.DAY_OF_MONTH );
 		LocalDate localDate = toLocalDate( date );
 		assertEquals( localDate.getYear(), year );
@@ -83,7 +83,7 @@ public class LegacyConvertersTest {
 		Calendar c = Calendar.getInstance();
 		c.setTime( date );
 		int year = c.get( Calendar.YEAR );
-		int month = c.get( Calendar.MONTH );
+		int month = c.get( Calendar.MONTH ) + 1;
 		YearMonth yearMonth = toYearMonth( date );
 		assertEquals( yearMonth.getYear(), year );
 		assertEquals( yearMonth.getMonthValue(), month );
@@ -95,7 +95,7 @@ public class LegacyConvertersTest {
 		Date date = new Date( epochMillis );
 		Calendar c = Calendar.getInstance();
 		c.setTime( date );
-		int month = c.get( Calendar.MONTH );
+		int month = c.get( Calendar.MONTH ) + 1;
 		int day = c.get( Calendar.DAY_OF_MONTH );
 		MonthDay monthDay = toMonthDay( date );
 		assertEquals( monthDay.getMonthValue(), month );
