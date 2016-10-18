@@ -43,7 +43,7 @@ public class LegacyConverters {
 		Calendar c = Calendar.getInstance();
 		c.setTime( date );
 		int year = c.get( Calendar.YEAR );
-		int month = c.get( Calendar.MONTH );
+		int month = c.get( Calendar.MONTH ) + 1;  // Calendar month starts at 0
 		int day = c.get( Calendar.DAY_OF_MONTH );
 		int hour = c.get( Calendar.HOUR_OF_DAY );
 		int minute = c.get( Calendar.MINUTE );
@@ -61,7 +61,7 @@ public class LegacyConverters {
 		Calendar c = Calendar.getInstance();
 		c.setTime( date );
 		int year = c.get( Calendar.YEAR );
-		int month = c.get( Calendar.MONTH );
+		int month = c.get( Calendar.MONTH ) + 1;  // Calendar month starts at 0
 		int day = c.get( Calendar.DAY_OF_MONTH );
 		return LocalDate.of( year, month, day );
 	}
@@ -90,7 +90,7 @@ public class LegacyConverters {
 		Calendar c = Calendar.getInstance();
 		c.setTime( date );
 		int year = c.get( Calendar.YEAR );
-		int month = c.get( Calendar.MONTH );
+		int month = c.get( Calendar.MONTH ) + 1;
 		return YearMonth.of( year, month );
 	}
 
@@ -102,7 +102,7 @@ public class LegacyConverters {
 	public static MonthDay toMonthDay( Date date ) {
 		Calendar c = Calendar.getInstance();
 		c.setTime( date );
-		int month = c.get( Calendar.MONTH );
+		int month = c.get( Calendar.MONTH ) + 1;
 		int day = c.get( Calendar.DAY_OF_MONTH );
 		return MonthDay.of( month, day );
 	}
